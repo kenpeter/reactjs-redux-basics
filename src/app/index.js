@@ -36,7 +36,11 @@ render(<App />, window.document.getElementById('app'));
 // create store
 // from
 // redux
-import { createStore, combineReducers } from "redux";
+import { 
+  createStore, 
+  combineReducers, 
+  applyMiddleware 
+} from "redux";
 
 
 const mathInitState = {
@@ -96,6 +100,17 @@ const userReducer = (state = userInitState, action) => {
   return state;
 }
 
+// const
+// logger
+// () => () => () => {......}
+// store, next, action
+const myLogger = (store) => (next) => (action) => {
+  console.log("Logged action", action);
+  
+  // next
+  // action
+  next(action);
+}
 
 // const
 // store
@@ -104,10 +119,10 @@ const userReducer = (state = userInitState, action) => {
 // state: 1
 // we don't need to pass state here.
 // combine + reducers
-const store = createStore(combineReducers({
-  mathReducer,
-  userReducer
-}));
+const store = createStore(
+  combineReducers({mathReducer, userReducer}),
+  applyMiddleware(myLogger)  
+);
 
 
 // when getting getState(), it will return all reducers.

@@ -36,33 +36,63 @@ render(<App />, window.document.getElementById('app'));
 // create store
 // from
 // redux
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-// what reducer does is
-// get state and action -> state
-// const
-// reducer
-// (state, action)
-// =>
-// {}
-const reducer = (state, action) => {
-  // switch
-  // action.type
+
+const mathInitState = {
+  result: 0,
+  lastValues: []
+};
+
+const userInitState = {
+  name: "Max",
+  age: 27
+};
+ 
+const mathReducer = (state = mathInitState, action) => {
   switch(action.type) {
-    // add
-    // state == 1
-    // state = 1 + 10 (payload)
     case "ADD":
-      state = state + action.payload;
+      state = {
+        ...state,
+        result: state.result + action.payload,
+        lastValues: [...state.lastValues, action.payload]
+      };
+         
       break;
     
-    // substract
     case "SUBSTRACT":
-      state = state - action.payload;
+      state = {
+        ...state, 
+        result: state.result - action.payload,
+        lastValues: [...state.lastValues, action.payload]
+      };
+      
       break;
   }
 
-  // return new state
+  return state;
+}
+
+
+const userReducer = (state = userInitState, action) => {
+  switch(action.type) {
+    case "SET_NAME":
+      state = {
+        ...state,
+        name: action.payload
+      };
+         
+      break;
+    
+    case "SET_AGE":
+      state = {
+        ...state, 
+        age: action.payload
+      };
+      
+      break;
+  }
+
   return state;
 }
 
@@ -72,9 +102,15 @@ const reducer = (state, action) => {
 // create store
 // reducer
 // state: 1
-const store = createStore(reducer, 0);
+// we don't need to pass state here.
+// combine + reducers
+const store = createStore(combineReducers({
+  mathReducer,
+  userReducer
+}));
 
 
+// when getting getState(), it will return all reducers.
 // because it is sub, so every time, there is action
 // it will react
 // store
@@ -108,7 +144,7 @@ store.dispatch({
 });
 
 store.dispatch({
-  type: "SUBSTRACT",
-  payload: 10
+  type: "SET_AGE",
+  payload: 40
 });
 

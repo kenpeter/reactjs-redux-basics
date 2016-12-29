@@ -42,6 +42,7 @@ import {
   applyMiddleware 
 } from "redux";
 
+import logger from "redux-logger";
 
 const mathInitState = {
   result: 0,
@@ -121,7 +122,10 @@ const myLogger = (store) => (next) => (action) => {
 // combine + reducers
 const store = createStore(
   combineReducers({mathReducer, userReducer}),
-  applyMiddleware(myLogger)  
+  // just pass func name
+  //applyMiddleware(myLogger)
+  // here we execute the func, why?
+  applyMiddleware(logger())
 );
 
 

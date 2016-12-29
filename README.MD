@@ -1,6 +1,17 @@
-# ReactJS Basics
+## Intro
 
-This repository accompanies my ReactJS / Redux - Basics YouTube Series.
 
-# Usage
-Switch to the branch you're interested in (branches = different stages in the series) and compare/ download the source code.
+## Install
+
+* npm install
+
+
+## Run
+
+* npm start
+* Then visit http://localhost:8080
+
+## App
+
+
+## What I learned

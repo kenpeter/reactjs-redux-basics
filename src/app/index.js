@@ -13,11 +13,18 @@ import {
   applyMiddleware 
 } from "redux";
 
+// import
+// logger
+// redux logger
 import logger from "redux-logger";
+
+//
+import {Provider} from "react-redux";
+
 
 // import
 // App
-import {App} from "./components/App";
+import App from "./components/App";
 
 const mathInitState = {
   result: 0,
@@ -96,7 +103,14 @@ const myLogger = (store) => (next) => (action) => {
 // we don't need to pass state here.
 // combine + reducers
 const store = createStore(
+  // combine reducers
+  // {}
+  // math: math reducer
+  // user: user reducer
+  
+  //combineReducers({math: mathReducer, user: userReducer}),
   combineReducers({mathReducer, userReducer}),
+  
   // just pass func name
   //applyMiddleware(myLogger)
   // here we execute the func, why?
@@ -142,5 +156,18 @@ store.dispatch({
   payload: 40
 });
 
-render(<App />, window.document.getElementById('app'));
+// render
+// provider
+// pass store to provider
+// window
+// document
+// get element by id
+// app
+// store has 2 reducers and middle wares
+// reducers has a key called user
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+  window.document.getElementById('app'));
 

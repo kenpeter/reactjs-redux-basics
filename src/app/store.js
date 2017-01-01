@@ -17,6 +17,7 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 
+// https://github.com/pburtchaell/redux-promise-middleware/blob/master/examples/simple/store.js
 // promise
 import promise from "redux-promise-middleware";
 

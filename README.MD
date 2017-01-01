@@ -14,5 +14,12 @@ Tutorial based on https://www.youtube.com/watch?v=BVvBa18o8Es&index=5&list=PL55R
 
 ## App
 
+none
 
 ## What I learned
+
+* Redux
+* Async action
+* Folder structure
+* store, reducer, state, action
+* App.js -> index.js -> index.html
